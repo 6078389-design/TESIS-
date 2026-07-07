@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITSI - Formularios Recibidos</title>
+    
+    <!-- ==========================================
+         BOOTSTRAP 5 CDN (Herramienta de diseño)
+         ========================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- ==========================================
+         ESTILOS PERSONALIZADOS (Mismos colores del logo)
+         ========================================== -->
+    <style>
+        :root {
+            /* Colores extraídos del logo ITSI */
+            --color-azul-oscuro: #1a237e;
+            --color-azul-claro: #0d47a1;
+            --color-amarillo: #FFD700;
+            --color-amarillo-oscuro: #FFC107;
+            --color-plateado: #C0C0C0;
+            --color-gris: #A9A9A9;
+            --color-blanco: #FFFFFF;
+            --color-rojo: #DC143C;
+        }
+        
+        /* Estilo general del cuerpo */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* ==========================================
+           ESTILOS DEL NAVBAR (Barra de navegación)
+           ========================================== */
+        .navbar-itsi {
+            background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-azul-claro));
+        }
+        
+        .navbar-brand {
+            color: var(--color-amarillo) !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--color-blanco) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-amarillo) !important;
+        }
+        
+        /* ==========================================
+           ESTILOS DE LA SECCIÓN DE TABLA
+           ========================================== */
+        .seccion-tabla {
+            background: linear-gradient(180deg, var(--color-blanco) 0%, #e8e8e8 100%);
+            padding: 60px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .titulo-seccion {
+            color: var(--color-azul-oscuro);
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .tabla-container {
+            background: var(--color-blanco);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Estilos de la tabla Bootstrap personalizada */
+        .table-itsi {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .table-itsi thead {
+            background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-azul-claro));
+            color: var(--color-blanco);
+        }
+        
+        .table-itsi thead th {
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .table-itsi tbody tr {
+            transition: background-color 0.3s;
+        }
+        
+        .table-itsi tbody tr:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+        
+        .table-itsi tbody td {
+            padding: 15px;
+            vertical-align: middle;
+        }
+        
+        /* Badge para el estado */
+        .badge-nuevo {
+            background-color: var(--color-amarillo);
+            color: var(--color-azul-oscuro);
+            font-weight: bold;
+        }
+        
+        /* Botón de acciones */
+        .btn-eliminar {
+            background-color: var(--color-rojo);
+            color: var(--color-blanco);
+            border: none;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .btn-eliminar:hover {
+            transform: scale(1.1);
+            background-color: #b01030;
+        }
+        
+        /* Mensaje cuando no hay datos */
+        .sin-datos {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--color-gris);
+        }
+        
+        .sin-datos i {
+            font-size: 4rem;
+            color: var(--color-plateado);
+            margin-bottom: 20px;
+        }
+        
+        /* ==========================================
+           ESTILOS DEL FOOTER
+           ========================================== */
+        .footer-itsi {
+            background: var(--color-azul-oscuro);
+            color: var(--color-blanco);
+            padding: 30px 0;
+        }
+        
+        .footer-text {
+            color: var(--color-plateado);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =======================================================
+         NAVBAR - Barra de navegación
+         ======================================================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-itsi sticky-top">
+        <div class="container">
+            <!-- Logo/nombre del bachillerato -->
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cpu"></i> ITSI
+            </a>
+            
+            <!-- Botón de menú para móviles -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Enlaces de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Enlace 1: Inicio -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-house"></i> Inicio
+                        </a>
+                    </li>
+                    <!-- Enlace 2: Formularios -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="formularios.html">
+                            <i class="bi bi-table"></i> Formularios
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =======================================================
+         SECCIÓN DE TABLA - Muestra los formularios recibidos
+         ======================================================= -->
+    <section class="seccion-tabla">
+        <div class="container">
+            <h2 class="titulo-seccion">
+                <i class="bi bi-table"></i> Formularios de Inscripción Recibidos
+            </h2>
+            
+            <div class="tabla-container">
+                <!-- Botón para recargar datos -->
+                <div class="mb-3 text-end">
+                    <button class="btn btn-outline-primary" onclick="cargarDatos()">
+                        <i class="bi bi-arrow-clockwise"></i> Recargar Datos
+                    </button>
+                    <button class="btn btn-outline-danger ms-2" onclick="limpiarTodos()">
+                        <i class="bi bi-trash"></i> Limpiar Todo
+                    </button>
+                </div>
+                
+                <!-- Tabla de formularios -->
+                <div class="table-responsive">
+                    <table class="table table-itsi table-hover" id="tablaFormularios">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Fecha Cita</th>
+                                <th>Mensaje</th>
+                                <th>Fecha Registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTabla">
+                            <!-- Los datos se cargarán aquí con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Mensaje cuando no hay datos -->
+                <div id="sinDatos" class="sin-datos" style="display: none;">
+                    <i class="bi bi-inbox"></i>
+                    <h4>No hay formularios recibidos</h4>
+                    <p>Aún no se han registrado solicitudes de inscripción.</p>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Ir al Formulario
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Información sobre los datos -->
+            <div class="alert alert-info mt-4" role="alert">
+                <i class="bi bi-info-circle"></i>
+                <strong>Nota:</strong> Los datos se guardan en el navegador (localStorage). 
+                Para ver los formularios, primero debes llenar el formulario en la página de inicio.
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         FOOTER - Pie de página
+         ======================================================= -->
+    <footer class="footer-itsi">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <h5 class="text-warning">ITSI</h5>
+                    <p class="footer-text mb-0">
+                        Bachillerato Técnico Vocacional en<br>
+                        Infraestructura Tecnológica y Servicios Informáticos
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <p class="footer-text mb-0">
+                        <i class="bi bi-building"></i> C.E. INSA<br>
+                        © 2024 Todos los derechos reservados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =======================================================
+         SCRIPTS DE BOOTSTRAP 5 (Funcionalidad interactiva)
+         ======================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para cargar y mostrar los datos del localStorage -->
+    <script>
+        // Cargar los datos cuando la página se carga
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarDatos();
+        });
+        
+        // Función para cargar los datos del localStorage
+        function cargarDatos() {
+            // Obtiene los datos del localStorage
+            let datosGuardados = localStorage.getItem('itsi_formularios');
+            let formularios = datosGuardados ? JSON.parse(datosGuardados) : [];
+            
+            // Obtiene el cuerpo de la tabla
+            const cuerpoTabla = document.getElementById('cuerpoTabla');
+            const sinDatos = document.getElementById('sinDatos');
+            
+            // Limpia la tabla
+            cuerpoTabla.innerHTML = '';
+            
+            // Si no hay datos, muestra el mensaje
+            if (formularios.length === 0) {
+                sinDatos.style.display = 'block';
+                document.getElementById('tablaFormularios').style.display = 'none';
+                return;
+            }
+            
+            // Muestra la tabla y oculta el mensaje
+            sinDatos.style.display = 'none';
+            document.getElementById('tablaFormularios').style.display = 'table';
+            
+            // Recorre los formularios y agrega filas a la tabla
+            formularios.forEach(function(formulario, index) {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td><span class="badge badge-nuevo">${index + 1}</span></td>
+                    <td><strong>${formulario.nombre}</strong></td>
+                    <td>${formulario.email}</td>
+                    <td>${formulario.telefono}</td>
+                    <td>${formulario.fecha}</td>
+                    <td>${formulario.mensaje || 'Sin mensaje'}</td>
+                    <td><small>${formulario.fechaRegistro}</small></td>
+                    <td>
+                        <button class="btn btn-eliminar btn-sm" onclick="eliminarRegistro(${formulario.id})">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                `;
+                cuerpoTabla.appendChild(fila);
+            });
+        }
+        
+        // Función para eliminar un registro específico
+        function eliminarRegistro(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                // Obtiene los datos del localStorage
+                let datosGuardados = localStorage.getItem('itsi_formularios');
+                let formularios = datosGuardados ? JSON.parse(datosGuardados) : [];
+                
+                // Filtra para eliminar el registro con el ID especificado
+                formularios = formularios.filter(function(formulario) {
+                    return formulario.id !== id;
+                });
+                
+                // Guarda los datos actualizados
+                localStorage.setItem('itsi_formularios', JSON.stringify(formularios));
+                
+                // Recarga la tabla
+                cargarDatos();
+                
+                // Muestra mensaje de confirmación
+                alert('Registro eliminado correctamente');
+            }
+        }
+        
+        // Función para limpiar todos los registros
+        function limpiarTodos() {
+            if (confirm('¿Estás seguro de que deseas eliminar TODOS los registros? Esta acción no se puede deshacer.')) {
+                localStorage.removeItem('itsi_formularios');
+                cargarDatos();
+                alert('Todos los registros han sido eliminados');
+            }
+        }
+    </script>
+
+</body>
+</html>
